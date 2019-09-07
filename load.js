@@ -150,7 +150,7 @@ var Load = function (target, success, error) {
 
     this.img = this.image;
 
-    // return this;
+    return this;
 };
 
 function includeJs(url, target, success, error) {
@@ -285,3 +285,86 @@ var time = Date.now || function () {
 
 
 // https://github.com/filamentgroup/loadCSS
+
+
+
+
+var E = function (selector, area, error, success) {
+    this.cfg = {};
+    this.cfg.area = document;
+    this.cfg.selector = selector;
+    this.cfg.exist = false;
+
+    this.success = function (elem) {
+        console.log("Element elem: ", elem);
+    };
+
+    this.error = function (elem) {
+        console.error("! Element elem: ", elem);
+    };
+
+    if (typeof success === 'function') {
+        this.success = success;
+    }
+
+    if (typeof error === 'function') {
+        this.error = error;
+    }
+
+
+    var self = this;
+
+    this.selector = function (selector) {
+        self.cfg.selector = selector;
+        return this;
+    }
+
+    this.first = function (error, success) {
+        if (typeof success !== 'function') {
+            success = self.success;
+        }
+        if (typeof error !== 'function') {
+            error = self.error;
+        }
+
+        const elem = document.querySelector(self.cfg.selector);
+
+        console.log('E first self.cfg.selector', self.cfg.selector);
+        console.log('E first elem', elem);
+
+        if (elem !== null) {
+            self.cfg.exist = true;
+            success(elem);
+            return elem;
+        } else {
+            self.cfg.exist = false;
+            error();
+        }
+
+        return elem;
+    }
+
+    this.all = function (error, success) {
+        if (typeof success !== 'function') {
+            success = self.success;
+        }
+        if (typeof error !== 'function') {
+            error = self.error;
+        }
+
+        const elem = document.querySelectorAll(self.cfg.selector);
+
+        console.log('E all self.cfg.selector', self.cfg.selector);
+        console.log('E all elem', elem);
+
+        if (elem !== null) {
+            self.cfg.exist = true;
+            success(elem);
+        } else {
+            self.cfg.exist = false;
+            error(elem);
+        }
+
+        return elem;
+    }
+};
