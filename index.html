@@ -50,12 +50,12 @@ http://localhost/origini-app/visitor/home/page/index.html
 
     // var Load = new load(target, success);
     // var Load = new load(target, success);
-    var loada = new Loader(document.body, success, error);
+    var loader = new Load(document.body, success, error);
     // console.log(
     //     'loada',loada
     // );
 
-    loada.js([
+    loader.js([
         "//js.apiunit.com/e.js",
         "//js.apiunit.com/formToObject.min.js",
         "//js.apiunit.com/response.js",
@@ -71,7 +71,7 @@ http://localhost/origini-app/visitor/home/page/index.html
     //     load(target, success, error)
     // );
 
-    loada.sleep(100).js([
+    loader.delay(100).js([
         "//js.apiunit.com/index.js",
         "//js.apiunit.com/index1.js"
     ]);

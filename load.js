@@ -1,4 +1,4 @@
-var Loader = function (target, success, error) {
+var Load = function (target, success, error) {
     //url is URL of external file, success is the code
     //to be called from the file, location is the location to
     //insert the <script> element
@@ -12,7 +12,7 @@ var Loader = function (target, success, error) {
 
     var self = this;
 
-    this.sleep = function (delay) {
+    this.delay = function (delay) {
         self.cfg.delay = delay;
         return this;
     };
