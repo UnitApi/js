@@ -1,34 +1,38 @@
-function load(target, success, error) {
+var Loader = function (target, success, error) {
     //url is URL of external file, success is the code
     //to be called from the file, location is the location to
     //insert the <script> element
+    this.cfg = {};
+    this.cfg.target = target;
+    this.cfg.delay = 0;
 
     this.success = success;
     this.error = error;
-    this.error = error;
-    this.delay = 0;
+
 
     var self = this;
 
-    this.delay = function (delay) {
-        self.delay = delay;
+    this.sleep = function (delay) {
+        self.cfg.delay = delay;
         return this;
     };
 
     this.js = function (url) {
-        if (typeof self.delay === 'number' && self.delay > 1) {
+        if (typeof self.cfg.delay === 'number' && self.cfg.delay > 1) {
             setTimeout(function () {
-                    self.loadJs(url);
+                    console.log('delayed', self.cfg.delay, url);
+                    self.loadJs(url, self.cfg.target, self.success, self.error);
                 },
-                self.delay
+                self.cfg.delay
             );
         } else {
-            self.loadJs(url);
+            console.log('loaded', url);
+            self.loadJs(url, self.cfg.target, self.success, self.error);
         }
         return this;
     };
 
-    this.loadJs = function (url) {
+    this.loadJs = function (url, target, success, error) {
         if (typeof url === 'object') {
             //console.log('obj:', obj);
 
@@ -61,14 +65,14 @@ function load(target, success, error) {
                 console.log('load js url[i]', url[i]);
 
                 try {
-                    var exe = loadHtml(url[i], target, success, error);
+                    var exe = loadHtml(url[i], self.cfg.target, success, error);
                     console.log('load js ', url[i], exe);
                 } catch (err) {
                     console.error('!load js ', url[i], err);
                 }
             }
         } else {
-            loadHtml(url, target, success, error);
+            loadHtml(url, self.cfg.target, success, error);
             // console.error('apiunit obj: is not object:', obj);
         }
         return this;
@@ -83,14 +87,14 @@ function load(target, success, error) {
                 console.log('load js url[i]', url[i]);
 
                 try {
-                    var exe = loadStyle(url[i], target, success, error);
+                    var exe = loadStyle(url[i], self.cfg.target, success, error);
                     console.log('load js ', url[i], exe);
                 } catch (err) {
                     console.error('!load js ', url[i], err);
                 }
             }
         } else {
-            loadHtml(url, target, success, error);
+            loadHtml(url, self.cfg.target, success, error);
             // console.error('apiunit obj: is not object:', obj);
         }
         return this;
@@ -105,20 +109,20 @@ function load(target, success, error) {
                 console.log('load js url[i]', url[i]);
 
                 try {
-                    var exe = loadImage(url[i], target, success, error);
+                    var exe = loadImage(url[i], self.cfg.target, success, error);
                     console.log('load js ', url[i], exe);
                 } catch (err) {
                     console.error('!load js ', url[i], err);
                 }
             }
         } else {
-            loadHtml(url, target, success, error);
+            loadHtml(url, self.cfg.target, success, error);
             // console.error('apiunit obj: is not object:', obj);
         }
         return this;
     };
 
-    return this;
+    // return this;
 };
 
 function loadJs(url, target, success, error) {
@@ -130,6 +134,9 @@ function loadJs(url, target, success, error) {
     scriptTag.onload = success;
     scriptTag.onreadystatechange = success;
 
+    if (typeof target === 'undefined') {
+        target = document.body;
+    }
     target.appendChild(scriptTag);
 }
 

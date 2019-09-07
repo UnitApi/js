@@ -42,15 +42,15 @@ web.json({
     },
     "target": "#home-plugins",
     "image": [
-        "/visitor/home/img/apiunit.png"
+        "//app.apiunit.com/visitor/home/img/apiunit.png"
     ],
     "html": [
-        "/visitor/home/plugin/messages.html",
-        "/visitor/newsletter/plugin/create.html"
+        "//app.apiunit.com/visitor/home/plugin/messages.html",
+        "//app.apiunit.com/visitor/newsletter/plugin/create.html"
     ],
     "style": [
-        "/visitor/newsletter/css/black.css",
-        "/visitor/home/css/mobile.css"
+        "//app.apiunit.com/visitor/newsletter/css/black.css",
+        "//app.apiunit.com/visitor/home/css/mobile.css"
     ],
     "script": [
         "//js.apiunit.com/message.js",
@@ -68,7 +68,7 @@ event.router(rout);
 event.json({
     "submit": {
         "target": "form",
-        "url": "/visitor/newsletter/php/index.php",
+        "url": "//app.apiunit.com/visitor/newsletter/php/index.php",
         "method": "get"
     },
 }, 200);

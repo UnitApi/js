@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>js.apiunit.com</title>
 
-    <script src="//js.apiunit.com/load.js"></script>
+    <script src="load.js"></script>
 
     <script>
         // REDIRECTION from http -> https
@@ -17,146 +17,6 @@
     </script>
 
 
-    <script>
-
-        // TODO: move all scripts to js.apiunit.com
-
-        var success = function (data) {
-            console.log('loaded', data);
-        };
-        var error = function (data) {
-            console.error('!loaded', data);
-        };
-
-        // var target = document.body;
-        var target = document.getElementsByTagName('head')[0];
-
-        // var Load = new load(target, success);
-        // var Load = new load(target, success);
-        load(target, success, error).js([
-            "//js.apiunit.com/e.js",
-            "//js.apiunit.com/formToObject.min.js",
-            "//js.apiunit.com/response.js",
-            "//js.apiunit.com/rest.js",
-            "//js.apiunit.com/include.js",
-            "//js.apiunit.com/listener.js",
-            "//js.apiunit.com/router.js",
-            "//js.apiunit.com/apiunit.js",
-        ]);
-
-        load(target, success, error).delay(100).js([
-            "//js.apiunit.com/index.js",
-            "//js.apiunit.com/index1.js"
-        ]);
-
-        //
-        // load(target, success, error).style([
-        //     "/visitor/newsletter/css/black.css",
-        //     "/visitor/home/css/mobile.css"
-        // ]);
-        //
-        //
-        // var target = document.body;
-        //
-        // load(target, success, error).html([
-        //     "/visitor/home/plugin/messages.html",
-        //     "/visitor/newsletter/plugin/create.html"
-        // ]);
-        //
-        //
-        // load(target, success, error).image([
-        //     "/visitor/home/img/apiunit.png"
-        // ]);
-
-
-        // event('submit');
-
-        // TODO: more possbilites, recognise extension
-        // function myPlugin() {
-        //
-        //     var opts = {
-        //         verbose: false
-        //     };                          ///< The options required to run this function
-        //     var self = this;            ///< An alias to 'this' in case we're in jQuery                         ///< Constants required for this function to work
-        //
-        //     this.getOptions = function() {
-        //         return opts;
-        //     };
-        //
-        //     this.setOptions = function(options) {
-        //         for (var x in options) {
-        //             opts[x] = options[x];
-        //         }
-        //     };
-        //
-        //     /**
-        //      * @brief Load the required files for this plugin
-        //      * @param {Function} callback A callback function to run when all files have been loaded
-        //      */
-        //     this.loadRequiredFiles = function (callback) {
-        //         var scripts = ['xx.js', 'yy.js'];
-        //         var styles = ['zz.css'];
-        //         var filesloaded = 0;
-        //         var filestoload = scripts.length + styles.length;
-        //         for (var i = 0; i < scripts.length; i++) {
-        //             log('Loading script ' + scripts[i]);
-        //             var script = document.createElement('script');
-        //             script.type = 'text/javascript';
-        //             script.src = scripts[i];
-        //             script.onload = function () {
-        //                 log('Loaded script');
-        //                 log(this);
-        //                 filesloaded++;
-        //                 finishLoad();
-        //             };
-        //             document.head.appendChild(script);
-        //         }
-        //         for (var i = 0; i < styles.length; i++) {
-        //             log('Loading style ' + styles[i]);
-        //             var style = document.createElement('link');
-        //             style.rel = 'stylesheet';
-        //             style.href = styles[i];
-        //             style.type = 'text/css';
-        //             style.onload = function () {
-        //                 log('Loaded style');
-        //                 log(this);
-        //                 filesloaded++;
-        //                 finishLoad();
-        //             };
-        //             document.head.appendChild(style);
-        //         }
-        //         function finishLoad() {
-        //             if (filesloaded === filestoload) {
-        //                 callback();
-        //             }
-        //         }
-        //     };
-        //
-        //     /**
-        //      * @brief Enable user-controlled logging within this function
-        //      * @param {String} msg The message to log
-        //      * @param {Boolean} force True to log message even if user has set logging to false
-        //      */
-        //     function log(msg, force) {
-        //         if (opts.verbose || force) {
-        //             console.log(msg);
-        //         }
-        //     }
-        //
-        //     /**
-        //      * @brief Initialise this function
-        //      */
-        //     this.init = function() {
-        //         self.loadRequiredFiles(self.afterLoadRequiredFiles);
-        //     };
-        //
-        //     this.afterLoadRequiredFiles = function () {
-        //         // Do stuff
-        //     };
-        //
-        // }
-
-    </script>
 
 </head>
 <body>
@@ -172,6 +32,158 @@ http://localhost/origini-app/visitor/home/page/index.html
 
 </div>
 
+
+
+<script>
+
+    // TODO: move all scripts to js.apiunit.com
+
+    var success = function (data) {
+        console.log('loaded', data);
+    };
+    var error = function (data) {
+        console.error('!loaded', data);
+    };
+
+    // var target = document.body;
+    var target = document.getElementsByTagName('head')[0];
+
+    // var Load = new load(target, success);
+    // var Load = new load(target, success);
+    var loada = new Loader(document.body, success, error);
+    // console.log(
+    //     'loada',loada
+    // );
+
+    loada.js([
+        "//js.apiunit.com/e.js",
+        "//js.apiunit.com/formToObject.min.js",
+        "//js.apiunit.com/response.js",
+        "//js.apiunit.com/rest.js",
+        "//js.apiunit.com/include.js",
+        "//js.apiunit.com/listener.js",
+        "//js.apiunit.com/router.js",
+        "//js.apiunit.com/apiunit.js",
+    ]);
+
+
+    // console.log(
+    //     load(target, success, error)
+    // );
+
+    loada.sleep(100).js([
+        "//js.apiunit.com/index.js",
+        "//js.apiunit.com/index1.js"
+    ]);
+
+    //
+    // load(target, success, error).style([
+    //     "/visitor/newsletter/css/black.css",
+    //     "/visitor/home/css/mobile.css"
+    // ]);
+    //
+    //
+    // var target = document.body;
+    //
+    // load(target, success, error).html([
+    //     "/visitor/home/plugin/messages.html",
+    //     "/visitor/newsletter/plugin/create.html"
+    // ]);
+    //
+    //
+    // load(target, success, error).image([
+    //     "/visitor/home/img/apiunit.png"
+    // ]);
+
+
+    // event('submit');
+
+    // TODO: more possbilites, recognise extension
+    // function myPlugin() {
+    //
+    //     var opts = {
+    //         verbose: false
+    //     };                          ///< The options required to run this function
+    //     var self = this;            ///< An alias to 'this' in case we're in jQuery                         ///< Constants required for this function to work
+    //
+    //     this.getOptions = function() {
+    //         return opts;
+    //     };
+    //
+    //     this.setOptions = function(options) {
+    //         for (var x in options) {
+    //             opts[x] = options[x];
+    //         }
+    //     };
+    //
+    //     /**
+    //      * @brief Load the required files for this plugin
+    //      * @param {Function} callback A callback function to run when all files have been loaded
+    //      */
+    //     this.loadRequiredFiles = function (callback) {
+    //         var scripts = ['xx.js', 'yy.js'];
+    //         var styles = ['zz.css'];
+    //         var filesloaded = 0;
+    //         var filestoload = scripts.length + styles.length;
+    //         for (var i = 0; i < scripts.length; i++) {
+    //             log('Loading script ' + scripts[i]);
+    //             var script = document.createElement('script');
+    //             script.type = 'text/javascript';
+    //             script.src = scripts[i];
+    //             script.onload = function () {
+    //                 log('Loaded script');
+    //                 log(this);
+    //                 filesloaded++;
+    //                 finishLoad();
+    //             };
+    //             document.head.appendChild(script);
+    //         }
+    //         for (var i = 0; i < styles.length; i++) {
+    //             log('Loading style ' + styles[i]);
+    //             var style = document.createElement('link');
+    //             style.rel = 'stylesheet';
+    //             style.href = styles[i];
+    //             style.type = 'text/css';
+    //             style.onload = function () {
+    //                 log('Loaded style');
+    //                 log(this);
+    //                 filesloaded++;
+    //                 finishLoad();
+    //             };
+    //             document.head.appendChild(style);
+    //         }
+    //         function finishLoad() {
+    //             if (filesloaded === filestoload) {
+    //                 callback();
+    //             }
+    //         }
+    //     };
+    //
+    //     /**
+    //      * @brief Enable user-controlled logging within this function
+    //      * @param {String} msg The message to log
+    //      * @param {Boolean} force True to log message even if user has set logging to false
+    //      */
+    //     function log(msg, force) {
+    //         if (opts.verbose || force) {
+    //             console.log(msg);
+    //         }
+    //     }
+    //
+    //     /**
+    //      * @brief Initialise this function
+    //      */
+    //     this.init = function() {
+    //         self.loadRequiredFiles(self.afterLoadRequiredFiles);
+    //     };
+    //
+    //     this.afterLoadRequiredFiles = function () {
+    //         // Do stuff
+    //     };
+    //
+    // }
+
+</script>
 
 </body>
 </html>
