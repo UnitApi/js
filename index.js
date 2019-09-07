@@ -23,13 +23,13 @@ var web = new Apiunit();
 
 web.router(rout);
 //         "domain": "http://localhost:88",
-//             "/visitor/home/js/rest.js",
-//             "/visitor/home/js/form-event.js",
+//             "//js.apiunit.com/rest.js",
+//             "//js.apiunit.com/form-event.js",
 //     "script_delay": [
 //     "/visitor/newsletter/js/foot.js"
 //     ]
-//     "/visitor/home/js/rest-url.js"
-//     "/visitor/home/js/formToObject.min.js",
+//     "//js.apiunit.com/rest-url.js"
+//     "//js.apiunit.com/formToObject.min.js",
 
 
 web.json({
@@ -53,7 +53,7 @@ web.json({
         "/visitor/home/css/mobile.css"
     ],
     "script": [
-        "/visitor/home/js/message.js",
+        "//js.apiunit.com/message.js",
     ]
 });
 
