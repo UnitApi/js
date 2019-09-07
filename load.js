@@ -29,6 +29,12 @@ var Load = function (target, success, error) {
     };
 
     this.noCache = function () {
+        self.cfg.cache = 0;
+        return this;
+    };
+    this.cacheOff = this.noCache;
+
+    this.cacheOn = function () {
         self.cfg.cache = 1;
         return this;
     };

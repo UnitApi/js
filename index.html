@@ -55,7 +55,7 @@ http://localhost/origini-app/visitor/home/page/index.html
     // );
 
     // loader.cache(1).cascade().js([
-    loader.cache(1).js([
+    loader.cacheOff().js([
         "//js.apiunit.com/e.js",
         "//js.apiunit.com/formToObject.min.js",
         "//js.apiunit.com/response.js",
@@ -78,7 +78,7 @@ http://localhost/origini-app/visitor/home/page/index.html
     ]);
 
 
-    loader.delay(50).target("#home-plugins").image([
+    loader.delay(70).target("#home-plugins").image([
         "//app.apiunit.com/visitor/home/img/apiunit.png"
     ]);
 
