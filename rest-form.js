@@ -17,7 +17,7 @@ var RestForm = function (separator, error, success) {
         var config = restform.cfg;
         // config.event = cfg.event;
         // config.target = cfg.event;
-        restform.cfg.element.all('',function () {
+        restform.cfg.element.all('', function () {
 
             var rest_form = new Rest(config.url, '?', error, success);
 
@@ -47,10 +47,6 @@ var RestForm = function (separator, error, success) {
         });
         // cfg.url;
         // cfg.method;
-
-
-
-
     }
 
 }

@@ -5,10 +5,30 @@ function load(target, success, error) {
 
     this.success = success;
     this.error = error;
+    this.error = error;
+    this.delay = 0;
 
-    var load = this;
+    var self = this;
+
+    this.delay = function (delay) {
+        self.delay = delay;
+        return this;
+    };
 
     this.js = function (url) {
+        if (typeof self.delay === 'number' && self.delay > 1) {
+            setTimeout(function () {
+                    self.loadJs(url);
+                },
+                self.delay
+            );
+        } else {
+            self.loadJs(url);
+        }
+        return this;
+    };
+
+    this.loadJs = function (url) {
         if (typeof url === 'object') {
             //console.log('obj:', obj);
 
@@ -27,6 +47,7 @@ function load(target, success, error) {
             loadJs(url, target, success, error);
             // console.error('apiunit obj: is not object:', obj);
         }
+
         return this;
     };
 
@@ -62,7 +83,7 @@ function load(target, success, error) {
                 console.log('load js url[i]', url[i]);
 
                 try {
-                    var exe = loadHtml(url[i], target, success, error);
+                    var exe = loadStyle(url[i], target, success, error);
                     console.log('load js ', url[i], exe);
                 } catch (err) {
                     console.error('!load js ', url[i], err);
@@ -84,7 +105,7 @@ function load(target, success, error) {
                 console.log('load js url[i]', url[i]);
 
                 try {
-                    var exe = loadHtml(url[i], target, success, error);
+                    var exe = loadImage(url[i], target, success, error);
                     console.log('load js ', url[i], exe);
                 } catch (err) {
                     console.error('!load js ', url[i], err);
@@ -96,6 +117,7 @@ function load(target, success, error) {
         }
         return this;
     };
+
     return this;
 };
 
