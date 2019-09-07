@@ -28,14 +28,15 @@ var Load = function (target, success, error) {
         return this;
     };
 
-    this.noCache = function () {
+    this.cacheOff = function () {
         self.cfg.cache = 0;
+
         return this;
     };
-    this.cacheOff = this.noCache;
 
     this.cacheOn = function () {
         self.cfg.cache = 1;
+
         return this;
     };
 
@@ -262,7 +263,7 @@ function includeStyle(url, target, success, error) {
     link.onload = success;
     link.onreadystatechange = success;
 
-    target.appendChild(link);
+    return target.appendChild(link);
 }
 
 // function includeImage(url, target, success, error) {
@@ -277,7 +278,8 @@ function includeImage(url, target) {
         console.log("includeImg onload: ", url);
         elmnt.appendChild(img);
     };
-    img.src = url;  // erst nach dem Event Listener!
+
+    return img.src = url;  // erst nach dem Event Listener!
 
     // var image = document.images[0];
     // var downloadingImage = new Image();
