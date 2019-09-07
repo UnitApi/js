@@ -20,6 +20,10 @@ możliwe jest ładowanie dynamiczne, poprzez dodawanie przez JS odpowiednich tag
 + image, file/base64
 + zagnieżdzony html, system pluginów
 
+## kaskadowe ładowanie plików
+coś więcej niż tylko łaodwanie plików, one są ładowane w dokładnie takiej samej kolejności
+
+
 ###  Wnioski
 praktyka pokazuje, że najlepsze rozwiązania są proste do zrozumienia i serwisowania
 apiunit składa się z kilku elementów:
@@ -35,3 +39,29 @@ pobieranie z obiektu XHR danych JSON
 zwraca obiekt
 
 + rest.js
+
+## PANEL PLESK
+
++ Apache & nginx Settings for [domain]
+    
++ APACHE
+        Additional directives for HTTP:
+        Additional directives for HTTPS:
+    
+    
+            Header set Access-Control-Allow-Origin "*"
+    
+    
++ NGINX
+    
+        Additional nginx directives:
+            
+
+
+
+        
+          
+            location ~ \.(ttf|ttc|otf|eot|woff|woff2|font.css|css|js|html)$ {
+                add_header Access-Control-Allow-Origin "*";
+            }
+
