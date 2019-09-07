@@ -127,6 +127,20 @@ var Load = function (target, success, error) {
     this.css = this.style;
 
     this.image = function (url) {
+        if (typeof self.cfg.delay === 'number' && self.cfg.delay > 1) {
+            setTimeout(function () {
+                    console.log('delayed', self.cfg.delay, url);
+                    self.loadImage(url, self.cfg.target, self.success, self.error);
+                },
+                self.cfg.delay
+            );
+        } else {
+            console.log('loaded', url);
+            self.loadImage(url, self.cfg.target, self.success, self.error);
+        }
+        return this;
+    };
+    this.loadImage = function (url, target, success, error) {
         if (typeof url === 'object') {
             //console.log('obj:', obj);
 
@@ -135,7 +149,7 @@ var Load = function (target, success, error) {
                 console.log('load js url[i]', url[i]);
 
                 try {
-                    var exe = includeImage(url[i], self.cfg.target, success, error);
+                    var exe = includeImage(url[i], target, success, error);
                     console.log('load js ', url[i], exe);
                 } catch (err) {
                     console.error('!load js ', url[i], err);
@@ -285,8 +299,6 @@ var time = Date.now || function () {
 
 
 // https://github.com/filamentgroup/loadCSS
-
-
 
 
 var E = function (selector, area, error, success) {
