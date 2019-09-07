@@ -5,23 +5,35 @@
 var RestForm = function (separator, error, success) {
 
     this.cfg = {};
-    this.cfg.element = new E(separator);
+    this.cfg.separator = separator;
+    // this.cfg.event = "submit";
+
     // var elmnt = el.first();
 
-    var restform = this;
+    var self = this;
 
     this.submit = function (cfg) {
+        if (typeof cfg === 'undefined') {
+            cfg = {};
+        }
+
         cfg.event = "submit";
         // cfg.target = "form";
 
-        var config = restform.cfg;
+
+        if (typeof cfg.separator === 'undefined') {
+            cfg.separator = self.cfg.separator;
+        }
+
+        cfg.element = new E(cfg.separator);
+
         // config.event = cfg.event;
         // config.target = cfg.event;
-        restform.cfg.element.all('', function () {
+        cfg.element.all('', function (forms) {
 
-            var rest_form = new Rest(config.url, '?', error, success);
+            var rest_form = new Rest(cfg.url, '?', error, success);
 
-            var forms = element.getElementsByTagName('form');
+            // var forms = element.getElementsByTagName('form');
             // var forms = element.getElementsByTagName('form');
 
             for (var i = 0; i < forms.length; i++) {

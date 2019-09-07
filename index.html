@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>js.apiunit.com</title>
 
-    <script src="load.js?4"></script>
+    <script src="load.js?5"></script>
 
     <script>
         // time();
@@ -64,7 +64,8 @@ http://localhost/origini-app/visitor/home/page/index.html
         "//js.apiunit.com/listener.js",
         "//js.apiunit.com/router.js",
         "//js.apiunit.com/apiunit.js",
-        "//js.apiunit.com/message.js"
+        "//js.apiunit.com/message.js",
+        "//js.apiunit.com/rest-form.js"
     ]);
 
     loader.style([
@@ -83,6 +84,16 @@ http://localhost/origini-app/visitor/home/page/index.html
     ]);
 
 
+    setTimeout(function () {
+            var form = new RestForm('form', error, success);
+            form.submit({
+                "target": "form",
+                "url": "//app.apiunit.com/visitor/newsletter/php/index.php",
+                "method": "get"
+            });
+        },
+        400
+    );
 
     // console.log(
     //     load(target, success, error)

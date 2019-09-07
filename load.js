@@ -58,6 +58,7 @@ var Load = function (target, success, error) {
     this.script = this.js;
 
 
+    // TODO: check if is loaded
     this.loadJs = function (url, target, success, error) {
         var suffix = '';
         if (typeof self.cfg.cache === 'number' && self.cfg.cache !== 1) {
@@ -187,7 +188,7 @@ function includeJs(url, target, success, error) {
     if (typeof target === 'undefined') {
         target = document.body;
     }
-    target.appendChild(scriptTag);
+    return target.appendChild(scriptTag);
 }
 
 function includeHtml(url, target, success, error) {
@@ -246,6 +247,8 @@ function includeHtml(url, target, success, error) {
         /* Exit the function: */
         return this;
     }
+    return false;
+
 }
 
 function includeStyle(url, target, success, error) {
