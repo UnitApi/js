@@ -78,7 +78,7 @@ http://localhost/origini-app/visitor/home/page/index.html
     ]);
 
 
-    loader.target("#home-plugins").image([
+    loader.delay(100).target("#home-plugins").image([
         "//app.apiunit.com/visitor/home/img/apiunit.png"
     ]);
 
@@ -87,11 +87,11 @@ http://localhost/origini-app/visitor/home/page/index.html
     // console.log(
     //     load(target, success, error)
     // );
-
-    loader.delay(100).cache(1).js([
-        "//js.apiunit.com/index.js",
-        "//js.apiunit.com/index1.js"
-    ]);
+    //
+    // loader.delay(100).cache(1).js([
+    //     "//js.apiunit.com/index.js",
+    //     "//js.apiunit.com/index1.js"
+    // ]);
 
     //
     // load(target, success, error).style([
