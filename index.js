@@ -60,18 +60,18 @@ web.json({
 
 var elem = new E();
 // var resp = new Response();
-
-var rout = new Listener(elem, Response);
-
-var event = new Apiunit();
-event.router(rout);
-event.json({
-    "submit": {
-        "target": "form",
-        "url": "//app.apiunit.com/visitor/newsletter/php/index.php",
-        "method": "get"
-    },
-}, 200);
+//
+// var rout = new Listener(elem, Response);
+//
+// var event = new Apiunit();
+// event.router(rout);
+// event.json({
+//     "submit": {
+//         "target": "form",
+//         "url": "//app.apiunit.com/visitor/newsletter/php/index.php",
+//         "method": "get"
+//     },
+// }, 200);
 
 //
 //

@@ -110,8 +110,10 @@ var Include = function (error, success) {
 
         var el = new E(selector);
 
-        var elmnt = el.first();
+        console.log('includeUrl el', el);
 
+        var elmnt = el.first();
+        console.log('includeUrl elmnt', elmnt);
 
 
         if (typeof success !== 'function') {
