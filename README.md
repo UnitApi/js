@@ -42,6 +42,10 @@ zwraca obiekt
 
 ## PANEL PLESK
 
+https://support.plesk.com/hc/en-us/articles/115001338265-How-to-set-up-CORS-cross-origin-resource-sharing-in-Plesk-for-Linux-
+
+    Access-Control-Allow-Origin: [SCHEME]://[HOST]:[PORT_OPTIONAL]
+
 + Apache & nginx Settings for [domain]
     
 + APACHE
@@ -53,6 +57,8 @@ zwraca obiekt
     
     
 + NGINX
+    
+        uncheck: Smart static files processing 
     
         Additional nginx directives:
             

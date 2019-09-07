@@ -105,15 +105,15 @@ var Include = function (error, success) {
         // downloadingImage.src = url;
     };
 
-    this.includeUrl = function (file, selector, error, success) {
+    this.includeHtml = function (file, selector, error, success) {
         var xhttp;
 
         var el = new E(selector);
 
-        console.log('includeUrl el', el);
+        console.log('includeHtml el', el);
 
         var elmnt = el.first();
-        console.log('includeUrl elmnt', elmnt);
+        console.log('includeHtml elmnt', elmnt);
 
 
         if (typeof success !== 'function') {
@@ -158,7 +158,7 @@ var Include = function (error, success) {
                         error(this);
                     }
                     /* Remove the attribute, and call this function once more: */
-                    // includeUrl(file, success, error);
+                    // includeHtml(file, success, error);
                 }
             };
             xhttp.open("GET", file, true);

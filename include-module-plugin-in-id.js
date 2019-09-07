@@ -35,7 +35,7 @@ function includeModulePluginInId(module, plugin, el_id, success, error) {
 
                 }
                 /* Remove the attribute, and call this function once more: */
-                // includeUrl(file, success, error);
+                // includeHtml(file, success, error);
             }
         }
         xhttp.open("GET", file, true);

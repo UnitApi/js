@@ -122,7 +122,7 @@ var Router = function (target, error, success) {
 
 
             if (!exist_in_apiunit) {
-                includeUrl(files[i], router.cfg.target, this.error, this.success);
+                includeHtml(files[i], router.cfg.target, this.error, this.success);
                 router.included.push(files[i]);
             } else {
                 console.error('!exist: ', files[i]);
