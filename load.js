@@ -42,6 +42,9 @@ var Load = function (target, success, error) {
         }
         return this;
     };
+    this.javascript = this.js;
+    this.script = this.js;
+
 
     this.loadJs = function (url, target, success, error) {
         var suffix = '';
@@ -94,6 +97,7 @@ var Load = function (target, success, error) {
         return this;
     };
 
+
     this.style = function (url) {
         if (typeof url === 'object') {
             //console.log('obj:', obj);
@@ -115,6 +119,7 @@ var Load = function (target, success, error) {
         }
         return this;
     };
+    this.css = this.style;
 
     this.image = function (url) {
         if (typeof url === 'object') {
@@ -137,6 +142,8 @@ var Load = function (target, success, error) {
         }
         return this;
     };
+
+    this.img = this.image;
 
     // return this;
 };

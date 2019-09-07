@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>js.apiunit.com</title>
 
-    <script src="load.js?2"></script>
+    <script src="load.js?3"></script>
 
     <script>
         // time();
@@ -16,7 +16,6 @@
         //     window.location.href = window.location.href.replace('http', 'https');
         // }
     </script>
-
 
 
 </head>
@@ -32,7 +31,6 @@ http://localhost/origini-app/visitor/home/page/index.html
     ...
 
 </div>
-
 
 
 <script>
@@ -56,7 +54,8 @@ http://localhost/origini-app/visitor/home/page/index.html
     //     'loada',loada
     // );
 
-    loader.cache(1).cascade().js([
+    // loader.cache(1).cascade().js([
+    loader.cache(1).js([
         "//js.apiunit.com/e.js",
         "//js.apiunit.com/formToObject.min.js",
         "//js.apiunit.com/response.js",
@@ -65,7 +64,24 @@ http://localhost/origini-app/visitor/home/page/index.html
         "//js.apiunit.com/listener.js",
         "//js.apiunit.com/router.js",
         "//js.apiunit.com/apiunit.js",
+        "//js.apiunit.com/message.js"
     ]);
+
+    loader.style([
+        "//app.apiunit.com/visitor/newsletter/css/black.css",
+        "//app.apiunit.com/visitor/home/css/mobile.css"
+    ]);
+
+    loader.delay(10).target("#home-plugins").html([
+        "//app.apiunit.com/visitor/home/plugin/messages.html",
+        "//app.apiunit.com/visitor/newsletter/plugin/create.html"
+    ]);
+
+
+    loader.image.target("#home-plugins")([
+        "//app.apiunit.com/visitor/home/img/apiunit.png"
+    ]);
+
 
 
     // console.log(
