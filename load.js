@@ -13,6 +13,11 @@ var Load = function (target, success, error) {
 
     var self = this;
 
+    this.target = function (target) {
+        self.cfg.target = target;
+        return this;
+    };
+
     this.delay = function (delay) {
         self.cfg.delay = delay;
         return this;
