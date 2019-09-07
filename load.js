@@ -129,17 +129,18 @@ var Load = function (target, success, error) {
     this.image = function (url) {
         if (typeof self.cfg.delay === 'number' && self.cfg.delay > 1) {
             setTimeout(function () {
-                    console.log('delayed', self.cfg.delay, url);
+                    console.log('image delayed', self.cfg.delay, url);
                     self.loadImage(url, self.cfg.target, self.success, self.error);
                 },
                 self.cfg.delay
             );
         } else {
-            console.log('loaded', url);
+            console.log('image loaded', url, self.cfg.delay);
             self.loadImage(url, self.cfg.target, self.success, self.error);
         }
         return this;
     };
+
     this.loadImage = function (url, target, success, error) {
         if (typeof url === 'object') {
             //console.log('obj:', obj);
