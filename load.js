@@ -5,6 +5,7 @@ var Load = function (target, success, error) {
     this.cfg = {};
     this.cfg.target = target;
     this.cfg.delay = 0;
+    this.cfg.cache = 0;
 
     this.success = success;
     this.error = error;
@@ -14,6 +15,11 @@ var Load = function (target, success, error) {
 
     this.delay = function (delay) {
         self.cfg.delay = delay;
+        return this;
+    };
+
+    this.cache = function (cache) {
+        self.cfg.cache = cache;
         return this;
     };
 
@@ -33,6 +39,11 @@ var Load = function (target, success, error) {
     };
 
     this.loadJs = function (url, target, success, error) {
+        var suffix = '';
+        if (typeof self.cfg.cache === 'number' && self.cfg.cache === 1) {
+            suffix = '?' + time();
+        }
+
         if (typeof url === 'object') {
             //console.log('obj:', obj);
 
@@ -41,14 +52,14 @@ var Load = function (target, success, error) {
                 console.log('load js url[i]', url[i]);
 
                 try {
-                    var exe = loadJs(url[i], target, success, error);
+                    var exe = loadJs(url[i] + suffix, target, success, error);
                     console.log('load js ', url[i], exe);
                 } catch (err) {
                     console.error('!load js ', url[i], err);
                 }
             }
         } else {
-            loadJs(url, target, success, error);
+            loadJs(url + suffix, target, success, error);
             // console.error('apiunit obj: is not object:', obj);
         }
 
@@ -151,3 +162,9 @@ function loadStyle(url, target, success, error) {
 function loadImage(url, target, success, error) {
 
 }
+
+var time = Date.now || function () {
+    return +new Date;
+};
+
+// time();
