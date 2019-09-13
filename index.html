@@ -55,17 +55,28 @@ http://localhost/origini-app/visitor/home/page/index.html
     // );
 
     // loader.cache(1).cascade().js([
-    loader.cacheOff().js([
-        "//js.apiunit.com/e.js",
-        "//js.apiunit.com/formToObject.min.js",
-        "//js.apiunit.com/response.js",
-        "//js.apiunit.com/rest.js",
-        "//js.apiunit.com/include.js",
-        "//js.apiunit.com/listener.js",
-        "//js.apiunit.com/router.js",
-        "//js.apiunit.com/apiunit.js",
-        "//js.apiunit.com/message.js",
-        "//js.apiunit.com/rest-form.js"
+    loader
+        .cacheOff()
+        .env({
+            "local":{
+                "domain": "//localhost:63342/"
+            },
+            "production":{
+                "domain": "//js.apiunit.com/"
+            }
+        })
+        // .domain('//js.apiunit.com/')
+        .js([
+        "e.js",
+        "formToObject.min.js",
+        "response.js",
+        "rest.js",
+        "include.js",
+        "listener.js",
+        "router.js",
+        "apiunit.js",
+        "message.js",
+        "rest-form.js"
     ]);
 
     loader.style([

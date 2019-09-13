@@ -6,12 +6,28 @@ var Load = function (target, success, error) {
     this.cfg.target = target;
     this.cfg.delay = 0;
     this.cfg.cache = 1;
+    this.cfg.domain = '';
+    this.cfg.env = '';
 
     this.success = success;
     this.error = error;
 
 
     var self = this;
+
+
+    this.env = function (env) {
+        self.cfg.env = env;
+
+        return this;
+    };
+
+
+    this.domain = function (domain) {
+        self.cfg.domain = domain;
+
+        return this;
+    };
 
     this.target = function (target) {
         self.cfg.target = target;
@@ -65,6 +81,11 @@ var Load = function (target, success, error) {
             suffix = '?' + time();
         }
 
+        var domain = '';
+        if (typeof self.cfg.domain === 'string' && self.cfg.domain.length > 0) {
+            domain = self.cfg.domain;
+        }
+
         if (typeof url === 'object') {
             //console.log('obj:', obj);
 
@@ -73,14 +94,14 @@ var Load = function (target, success, error) {
                 console.log('load js url[i]', url[i]);
 
                 try {
-                    var exe = includeJs(url[i] + suffix, target, success, error);
+                    var exe = includeJs(domain + url[i] + suffix, target, success, error);
                     console.log('load js ', url[i], exe);
                 } catch (err) {
                     console.error('!load js ', url[i], err);
                 }
             }
         } else {
-            includeJs(url + suffix, target, success, error);
+            includeJs(domain + url + suffix, target, success, error);
             // console.error('apiunit obj: is not object:', obj);
         }
 
