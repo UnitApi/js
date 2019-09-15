@@ -5,6 +5,26 @@ Libraries for apiunit implementation, works on js.apiunit.com
 
 Static files works on js.apiunit.com with nginx server
 
+## Standardy
+
+https://whatwg.org/
+
+webcomponents
+kompilatory
+
+    <template>
+https://html.spec.whatwg.org/multipage/scripting.html#the-template-element
+
+    
+link - tylko chrome
+
+
+ecma scripts modules
+https://www.sitepoint.com/understanding-es6-modules/
+
+https://exploringjs.com/es6/ch_modules.html
+
+
 ## Apiunit
 rozwiązanie dla programistów szukających prostych rozwiązań
 a nie wchodzących co chwilę w nowe technologie a potem wszelkie zmiany i konflikty sprawiają dużo pośrednich problemów
