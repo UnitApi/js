@@ -1,5 +1,5 @@
 # js
-https://apiunit.github.io/js/
+https://unitapi.github.io/js/
 
 Libraries for apiunit implementation, works on js.apiunit.com
 
