@@ -1,6 +1,5 @@
 [![gitter](https://badges.gitter.im/Join%20Chat.svg)][gitter]
 
-[![codacy](https://api.codacy.com/project/badge/grade/498a6a39d7d84ff687546359f58ee18)][codacy]
 
 
 
@@ -145,4 +144,4 @@ https://support.plesk.com/hc/en-us/articles/115001338265-How-to-set-up-CORS-cros
 
 ---
 [gitter]: https://gitter.im/UnitApi/community
-[codacy]: https://www.codacy.com/app/tom-sapletta-com/js
+
