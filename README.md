@@ -1,3 +1,5 @@
+image:https://badges.gitter.im/Join%20Chat.svg[link="https://gitter.im/RobWin/swagger2markup?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge"]
+
 # js
 https://unitapi.github.io/js/
 
