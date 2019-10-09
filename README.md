@@ -1,6 +1,6 @@
 [![image_url](https://badges.gitter.im/Join%20Chat.svg)][image_url]
 
-[image_url]: https://gitter.im/RobWin/swagger2markup?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge
+[image_url]: https://gitter.im/UnitApi/community
 
 
 # js
