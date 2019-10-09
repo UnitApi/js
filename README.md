@@ -1,3 +1,4 @@
+[![License Apache 2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg?style=true)](http://www.apache.org/licenses/LICENSE-2.0)
 [![Scrutinizer Quality Score](https://scrutinizer-ci.com/g/UnitApi/js/badges/quality-score.png)](https://scrutinizer-ci.com/g/UnitApi/js/)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/12d5c1d6b5794e8a8b193ef447cf78e4)](https://www.codacy.com/manual/tom-sapletta-com/js?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=UnitApi/js&amp;utm_campaign=Badge_Grade)
 [![gitter](https://badges.gitter.im/Join%20Chat.svg)][gitter]
