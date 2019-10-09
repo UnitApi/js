@@ -1,3 +1,4 @@
+[![Scrutinizer Quality Score](https://scrutinizer-ci.com/g/UnitApi/js/badges/quality-score.png)](https://scrutinizer-ci.com/g/UnitApi/js/)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/12d5c1d6b5794e8a8b193ef447cf78e4)](https://www.codacy.com/manual/tom-sapletta-com/js?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=UnitApi/js&amp;utm_campaign=Badge_Grade)
 [![gitter](https://badges.gitter.im/Join%20Chat.svg)][gitter]
 
