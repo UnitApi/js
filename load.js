@@ -1,3 +1,4 @@
+// TODO: if function not exist try to load from main folder with the name {NameOfFunction}.js
 var Load = function (target, success, error) {
     //url is URL of external file, success is the code
     //to be called from the file, location is the location to
@@ -6,28 +7,12 @@ var Load = function (target, success, error) {
     this.cfg.target = target;
     this.cfg.delay = 0;
     this.cfg.cache = 1;
-    this.cfg.domain = '';
-    this.cfg.env = '';
 
     this.success = success;
     this.error = error;
 
 
     var self = this;
-
-
-    this.env = function (env) {
-        self.cfg.env = env;
-
-        return this;
-    };
-
-
-    this.domain = function (domain) {
-        self.cfg.domain = domain;
-
-        return this;
-    };
 
     this.target = function (target) {
         self.cfg.target = target;
@@ -74,16 +59,47 @@ var Load = function (target, success, error) {
     this.script = this.js;
 
 
+    this.css = function (url) {
+        if (typeof self.cfg.delay === 'number' && self.cfg.delay > 1) {
+            setTimeout(function () {
+                    console.log('delayed', self.cfg.delay, url);
+                    self.loadCss(url, self.cfg.target, self.success, self.error);
+                },
+                self.cfg.delay
+            );
+        } else {
+            console.log('loaded', url);
+            self.loadCss(url, self.cfg.target, self.success, self.error);
+        }
+        return this;
+        //
+        // if (typeof url === 'object') {
+        //     //console.log('obj:', obj);
+        //
+        //     for (var i in url) {
+        //
+        //         console.log('load js url[i]', url[i]);
+        //
+        //         try {
+        //             var exe = includeStyle(url[i], self.cfg.target, success, error);
+        //             console.log('load js ', url[i], exe);
+        //         } catch (err) {
+        //             console.error('!load js ', url[i], err);
+        //         }
+        //     }
+        // } else {
+        //     includeHtml(url, self.cfg.target, success, error);
+        //     // console.error('apiunit obj: is not object:', obj);
+        // }
+        // return this;
+    };
+    this.style = this.css;
+
     // TODO: check if is loaded
     this.loadJs = function (url, target, success, error) {
         var suffix = '';
         if (typeof self.cfg.cache === 'number' && self.cfg.cache !== 1) {
             suffix = '?' + time();
-        }
-
-        var domain = '';
-        if (typeof self.cfg.domain === 'string' && self.cfg.domain.length > 0) {
-            domain = self.cfg.domain;
         }
 
         if (typeof url === 'object') {
@@ -94,14 +110,42 @@ var Load = function (target, success, error) {
                 console.log('load js url[i]', url[i]);
 
                 try {
-                    var exe = includeJs(domain + url[i] + suffix, target, success, error);
+                    var exe = includeJs(url[i] + suffix, target, success, error);
                     console.log('load js ', url[i], exe);
                 } catch (err) {
                     console.error('!load js ', url[i], err);
                 }
             }
         } else {
-            includeJs(domain + url + suffix, target, success, error);
+            includeJs(url + suffix, target, success, error);
+            // console.error('apiunit obj: is not object:', obj);
+        }
+
+        return this;
+    };
+
+    this.loadCss = function (url, target, success, error) {
+        var suffix = '';
+        if (typeof self.cfg.cache === 'number' && self.cfg.cache !== 1) {
+            suffix = '?' + time();
+        }
+
+        if (typeof url === 'object') {
+            //console.log('obj:', obj);
+
+            for (var i in url) {
+
+                console.log('load CSS url[i]', url[i]);
+
+                try {
+                    var exe = includeStyle(url[i] + suffix, target, success, error);
+                    console.log('load CSS ', url[i], exe);
+                } catch (err) {
+                    console.error('!load CSS ', url[i], err);
+                }
+            }
+        } else {
+            includeStyle(url + suffix, target, success, error);
             // console.error('apiunit obj: is not object:', obj);
         }
 
@@ -131,29 +175,6 @@ var Load = function (target, success, error) {
         return this;
     };
 
-
-    this.style = function (url) {
-        if (typeof url === 'object') {
-            //console.log('obj:', obj);
-
-            for (var i in url) {
-
-                console.log('load js url[i]', url[i]);
-
-                try {
-                    var exe = includeStyle(url[i], self.cfg.target, success, error);
-                    console.log('load js ', url[i], exe);
-                } catch (err) {
-                    console.error('!load js ', url[i], err);
-                }
-            }
-        } else {
-            includeHtml(url, self.cfg.target, success, error);
-            // console.error('apiunit obj: is not object:', obj);
-        }
-        return this;
-    };
-    this.css = this.style;
 
     this.image = function (url) {
         if (typeof self.cfg.delay === 'number' && self.cfg.delay > 1) {
@@ -206,11 +227,85 @@ function includeJs(url, target, success, error) {
     scriptTag.onload = success;
     scriptTag.onreadystatechange = success;
 
-    if (typeof target === 'undefined') {
-        target = document.body;
-    }
-    return target.appendChild(scriptTag);
+    return getTarget(target).appendChild(scriptTag);
 }
+
+function isEmpty(val) {
+    return val == null || typeof val === 'undefined' || val.length < 1;
+}
+
+function getTarget(target) {
+    if (isEmpty(target)) {
+        console.log('HEAD');
+        target = document.getElementsByTagName('head')[0];
+        if (isEmpty(target)) {
+            console.log('BODY');
+            target = document.body;
+        }
+    }
+    return target;
+}
+
+function createTagLink(url, success, error) {
+    var link = document.createElement('link');
+    link.href = url;
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.media = 'all';
+
+    link.onerror = error;
+    link.onload = success;
+    link.onreadystatechange = success;
+
+    return link;
+}
+
+
+function getXHRObject() {
+    var xhrObj = false;
+    try {
+        xhrObj = new XMLHttpRequest();
+    } catch (e) {
+        var progid = ['MSXML2.XMLHTTP.5.0', 'MSXML2.XMLHTTP.4.0',
+            'MSXML2.XMLHTTP.3.0', 'MSXML2.XMLHTTP', 'Microsoft.XMLHTTP'];
+        for (var i = 0; i < progid.length; ++i) {
+            try {
+                xhrObj = new ActiveXObject(progid[i]);
+            } catch (e) {
+                continue;
+            }
+            break;
+        }
+    } finally {
+        return xhrObj;
+    }
+}
+
+// TODO: replce path to id name and check if ID exist
+// FASTEST loading:
+// https://www.oreilly.com/library/view/even-faster-web/9780596803773/ch04.html
+function includeStyle(url, target, success, error) {
+    // console.log(target, target == null);
+    // return false;
+
+    // var xhrObj = getXHRObject(); // defined in the previous example
+    // xhrObj.onreadystatechange =
+    //     function () {
+    //         if (xhrObj.readyState == 4) {
+    //             // var scriptElem = document.createElement('script');
+    //             var scriptElem = document.createElement('style');
+    //             document.getElementsByTagName('head')[0].appendChild(scriptElem);
+    //             scriptElem.text = xhrObj.responseText;
+    //         }
+    //     };
+    // xhrObj.open('GET', url, true); // must be same domain as main page
+    // return xhrObj.send('');
+
+
+    var link = createTagLink(url, success, error);
+    return getTarget(target).appendChild(link);
+}
+
 
 function includeHtml(url, target, success, error) {
     var xhttp;
@@ -239,18 +334,7 @@ function includeHtml(url, target, success, error) {
 
             if (this.readyState == 4) {
                 if (this.status == 200) {
-                    // console.log('elmnt', elmnt);
-                    // console.log('responseText', this.responseText);
-                    // elmnt.innerHTML = this.responseText;
-                    // elmnt.appendChild(this.responseText);
-                    // elmnt.insertAdjacentHTML('beforeend', this.responseText);
-                    // var e = document.createElement('div');
-                    // e.innerHTML = this.responseText;
-                    // while(e.firstChild) {
-                    // elmnt.appendChild(e);
-                    // }
 
-                    // elmnt.insertAdjacentHTML('afterend', this.responseText);
                     elmnt.insertAdjacentHTML('beforeend', this.responseText);
 
                     success(this);
@@ -272,24 +356,6 @@ function includeHtml(url, target, success, error) {
 
 }
 
-function includeStyle(url, target, success, error) {
-    if (typeof target === 'undefined') {
-        // target = document.body;
-        target = document.getElementsByTagName('head')[0];
-    }
-
-    var link = document.createElement('link');
-    link.rel = 'stylesheet';
-    link.type = 'text/css';
-    link.href = url;
-
-    link.onerror = error;
-    link.onload = success;
-    link.onreadystatechange = success;
-
-    return target.appendChild(link);
-}
-
 // function includeImage(url, target, success, error) {
 
 function includeImage(url, target) {
@@ -305,33 +371,12 @@ function includeImage(url, target) {
 
     return img.src = url;  // erst nach dem Event Listener!
 
-    // var image = document.images[0];
-    // var downloadingImage = new Image();
-    // downloadingImage.onload = function () {
-    //     image.src = this.src;
-    // };
-    // downloadingImage.src = url;
 }
 
 
 var time = Date.now || function () {
     return +new Date;
 };
-
-// var time = new Date().getTime().toString();
-
-// time();
-// environment
-// var ua = navigator.userAgent;
-//
-// if(ua.indexOf('Firefox') !== -1) {
-//     // run Firefox-specific code
-// } else if(ua.indexOf('Chrome') !== -1) {
-//     // run Chrome-specific code
-// }
-
-
-// https://github.com/filamentgroup/loadCSS
 
 
 var E = function (selector, area, error, success) {
