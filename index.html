@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>js.apiunit.com</title>
+    <title>js.jloads.com</title>
 
     <script src="load.js?5"></script>
 
@@ -62,7 +62,7 @@ http://localhost/origini-app/visitor/home/page/index.html
                 "domain": "//localhost:63342/"
             },
             "production":{
-                "domain": "//js.apiunit.com/"
+                "domain": "//js.jloads.com/"
             }
         })
         // .domain('//js.apiunit.com/')
@@ -80,18 +80,18 @@ http://localhost/origini-app/visitor/home/page/index.html
     ]);
 
     loader.style([
-        "//app.apiunit.com/visitor/newsletter/css/black.css",
-        "//app.apiunit.com/visitor/home/css/mobile.css"
+        "//app.jloads.com/visitor/newsletter/css/black.css",
+        "//app.jloads.com/visitor/home/css/mobile.css"
     ]);
 
     loader.delay(10).target("#home-plugins").html([
-        "//app.apiunit.com/visitor/home/plugin/messages.html",
-        "//app.apiunit.com/visitor/newsletter/plugin/create.html"
+        "//app.jloads.com/visitor/home/plugin/messages.html",
+        "//app.jloads.com/visitor/newsletter/plugin/create.html"
     ]);
 
 
     loader.delay(70).target("#home-plugins").image([
-        "//app.apiunit.com/visitor/home/img/apiunit.png"
+        "//app.jloads.com/visitor/home/img/apiunit.png"
     ]);
 
 
@@ -99,7 +99,7 @@ http://localhost/origini-app/visitor/home/page/index.html
             var form = new RestForm('form', error, success);
             form.submit({
                 "target": "form",
-                "url": "//app.apiunit.com/visitor/newsletter/php/index.php",
+                "url": "//app.jloads.com/visitor/newsletter/php/index.php",
                 "method": "get"
             });
         },
