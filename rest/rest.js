@@ -74,6 +74,7 @@ var Rest = function (url, separator, response, error, success) {
         if (!xhr) {
             throw new Error('CORS not supported');
         }
+        xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');
         xhr.onload = function () {
             rest.response(xhr, error, success);
         }
@@ -112,6 +113,7 @@ var Rest = function (url, separator, response, error, success) {
         if (!xhr) {
             throw new Error('CORS not supported');
         }
+        xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');
         xhr.onload = function () {
             rest.response(xhr, error, success);
         }
