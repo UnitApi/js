@@ -144,6 +144,7 @@ var Rest = function (url, separator, response, error, success) {
     return this;
 }
 
+
 // https://www.html5rocks.com/en/tutorials/cors/
 /**
  * @param method
