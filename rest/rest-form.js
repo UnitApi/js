@@ -2,7 +2,7 @@
  * Rest
  * formToObject
  */
-var RestForm = function (separator, error, success) {
+var RestForm = function (separator, response, error, success) {
 
     this.cfg = {};
     this.cfg.separator = separator;
@@ -13,6 +13,7 @@ var RestForm = function (separator, error, success) {
     var self = this;
 
     this.submit = function (cfg) {
+
         if (typeof cfg === 'undefined') {
             cfg = {};
         }
@@ -31,7 +32,7 @@ var RestForm = function (separator, error, success) {
         // config.target = cfg.event;
         cfg.element.all('', function (forms) {
 
-            var rest_form = new Rest(cfg.url, '?', error, success);
+            var rest_form = new Rest(cfg.url, '?', response, error, success);
 
             // var forms = element.getElementsByTagName('form');
             // var forms = element.getElementsByTagName('form');
@@ -45,6 +46,7 @@ var RestForm = function (separator, error, success) {
 
                     var data = formToObject(this);
                     var method = data.method;
+
                     delete data.method;
                     delete data.submit;
 
