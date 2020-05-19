@@ -78,7 +78,11 @@ var Rest = function (url, separator, response, error, success) {
         xhr.onload = function () {
             rest.response(xhr, error, success);
         }
-        xhr.send(null);
+        try {
+            xhr.send(null);
+        } catch (err) {
+            error(err);
+        }
     }
 
     // create
@@ -92,7 +96,11 @@ var Rest = function (url, separator, response, error, success) {
         xhr.onload = function () {
             rest.response(xhr, error, success);
         }
-        xhr.send(rest.getJson(data));
+        try {
+            xhr.send(rest.getJson(data));
+        } catch (err) {
+            error(err);
+        }
     }
 
     // update
@@ -105,7 +113,11 @@ var Rest = function (url, separator, response, error, success) {
         xhr.onload = function () {
             rest.response(xhr, error, success);
         }
-        xhr.send(rest.getJson(data));
+        try {
+            xhr.send(rest.getJson(data));
+        } catch (err) {
+            error(err);
+        }
     }
 
     this.delete = function (id) {
@@ -117,7 +129,11 @@ var Rest = function (url, separator, response, error, success) {
         xhr.onload = function () {
             rest.response(xhr, error, success);
         }
-        xhr.send(null);
+        try {
+            xhr.send(null);
+        } catch (err) {
+            error(err);
+        }
     }
 
     this.getJson = function (data) {
