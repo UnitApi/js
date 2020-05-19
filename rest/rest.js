@@ -126,6 +126,12 @@ var Rest = function (url, separator, response, error, success) {
     return this;
 }
 
+// https://www.html5rocks.com/en/tutorials/cors/
+/**
+ * @param method
+ * @param url
+ * @returns {{withCredentials}|XDomainRequest}
+ */
 function createCORSRequest(method, url) {
     var xhr = new XMLHttpRequest();
     if ("withCredentials" in xhr) {
