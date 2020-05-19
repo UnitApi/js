@@ -56,8 +56,11 @@ var Rest = function (url, separator, response, error, success) {
     }
 
     this.all = function () {
-        var xhr = new XMLHttpRequest();
-        xhr.open('GET', rest.url, true);
+
+        var xhr = createCORSRequest('GET', rest.url);
+        if (!xhr) {
+            throw new Error('CORS not supported');
+        }
         xhr.onload = function () {
             rest.response(xhr, error, success);
         }
@@ -66,8 +69,11 @@ var Rest = function (url, separator, response, error, success) {
 
 
     this.get = function (id) {
-        var xhr = new XMLHttpRequest();
-        xhr.open('GET', rest.url + rest.separator + id, true);
+
+        var xhr = createCORSRequest('GET', rest.url + rest.separator + id);
+        if (!xhr) {
+            throw new Error('CORS not supported');
+        }
         xhr.onload = function () {
             rest.response(xhr, error, success);
         }
@@ -76,8 +82,11 @@ var Rest = function (url, separator, response, error, success) {
 
     // create
     this.post = function (data) {
-        var xhr = new XMLHttpRequest();
-        xhr.open("POST", rest.url, true);
+
+        var xhr = createCORSRequest("POST", rest.url);
+        if (!xhr) {
+            throw new Error('CORS not supported');
+        }
         xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');
         xhr.onload = function () {
             rest.response(xhr, error, success);
@@ -87,8 +96,10 @@ var Rest = function (url, separator, response, error, success) {
 
     // update
     this.put = function (id, data) {
-        var xhr = new XMLHttpRequest();
-        xhr.open("PUT", rest.url + rest.separator + id, true);
+        var xhr = createCORSRequest("PUT", rest.url + rest.separator + id);
+        if (!xhr) {
+            throw new Error('CORS not supported');
+        }
         xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');
         xhr.onload = function () {
             rest.response(xhr, error, success);
@@ -97,16 +108,17 @@ var Rest = function (url, separator, response, error, success) {
     }
 
     this.delete = function (id) {
-        var xhr = new XMLHttpRequest();
-
-        xhr.open("DELETE", rest.url + rest.separator + id, true);
+        var xhr = createCORSRequest("DELETE", rest.url + rest.separator + id);
+        if (!xhr) {
+            throw new Error('CORS not supported');
+        }
         xhr.onload = function () {
             rest.response(xhr, error, success);
         }
         xhr.send(null);
     }
 
-    this.getJson = function(data){
+    this.getJson = function (data) {
         var json = JSON.stringify(data);
         return json;
     }
@@ -114,3 +126,26 @@ var Rest = function (url, separator, response, error, success) {
     return this;
 }
 
+function createCORSRequest(method, url) {
+    var xhr = new XMLHttpRequest();
+    if ("withCredentials" in xhr) {
+
+        // Check if the XMLHttpRequest object has a "withCredentials" property.
+        // "withCredentials" only exists on XMLHTTPRequest2 objects.
+        xhr.open(method, url, true);
+
+    } else if (typeof XDomainRequest != "undefined") {
+
+        // Otherwise, check if XDomainRequest.
+        // XDomainRequest only exists in IE, and is IE's way of making CORS requests.
+        xhr = new XDomainRequest();
+        xhr.open(method, url, true);
+
+    } else {
+
+        // Otherwise, CORS is not supported by the browser.
+        xhr = null;
+
+    }
+    return xhr;
+}
