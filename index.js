@@ -23,13 +23,13 @@ var web = new Apiunit();
 
 web.router(rout);
 //         "domain": "http://localhost:88",
-//             "//js.apiunit.com/rest.js",
-//             "//js.apiunit.com/form-event.js",
+//             "//js.jloads.com/rest.js",
+//             "//js.jloads.com/form-event.js",
 //     "script_delay": [
 //     "/visitor/newsletter/js/foot.js"
 //     ]
-//     "//js.apiunit.com/rest-url.js"
-//     "//js.apiunit.com/formToObject.min.js",
+//     "//js.jloads.com/rest-url.js"
+//     "//js.jloads.com/formToObject.min.js",
 
 
 web.json({
@@ -42,18 +42,18 @@ web.json({
     },
     "target": "#home-plugins",
     "image": [
-        "//app.apiunit.com/visitor/home/img/apiunit.png"
+        "//app.jloads.com/visitor/home/img/apiunit.png"
     ],
     "html": [
-        "//app.apiunit.com/visitor/home/plugin/messages.html",
-        "//app.apiunit.com/visitor/newsletter/plugin/create.html"
+        "//app.jloads.com/visitor/home/plugin/messages.html",
+        "//app.jloads.com/visitor/newsletter/plugin/create.html"
     ],
     "style": [
-        "//app.apiunit.com/visitor/newsletter/css/black.css",
-        "//app.apiunit.com/visitor/home/css/mobile.css"
+        "//app.jloads.com/visitor/newsletter/css/black.css",
+        "//app.jloads.com/visitor/home/css/mobile.css"
     ],
     "script": [
-        "//js.apiunit.com/message.js",
+        "//js.jloads.com/message.js",
     ]
 },100);
 
@@ -68,7 +68,7 @@ var elem = new E();
 // event.json({
 //     "submit": {
 //         "target": "form",
-//         "url": "//app.apiunit.com/visitor/newsletter/php/index.php",
+//         "url": "//app.jloads.com/visitor/newsletter/php/index.php",
 //         "method": "get"
 //     },
 // }, 200);
@@ -86,7 +86,7 @@ var elem = new E();
 //     },
 // });
 
-// apiunit.event({
+// jloads.event({
 //         "target": "form",
 //         "event": "submit",
 //         "url": ""

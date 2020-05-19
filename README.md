@@ -6,9 +6,9 @@
 # js
 https://js.jloads.com
 
-Libraries for apiunit implementation, works on js.apiunit.com
+Libraries for apiunit implementation, works on js.jloads.com
 
-Static files works on js.apiunit.com with nginx server
+Static files works on js.jloads.com with nginx server
 
 ## Standardy
 
@@ -78,7 +78,7 @@ zmienne w zależności od środowiska
             "domain": "//localhost:63342/"
         },
         "production":{
-            "domain": "//js.apiunit.com/"
+            "domain": "//js.jloads.com/"
         }
     })
 

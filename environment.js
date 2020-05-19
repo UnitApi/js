@@ -29,15 +29,15 @@ var Router = function (target, error, success) {
     // var obj = this;
     this.docs = function (obj) {
         if (typeof obj !== 'object') {
-            console.error('apiunit.docs: is not object:', obj);
+            console.error('jloads.docs: is not object:', obj);
             return this;
         }
 
         for (var i in obj) {
-            console.log('apiunit.docs: ', i, ' = ', obj[i]);
+            console.log('jloads.docs: ', i, ' = ', obj[i]);
 
             // for (var name in obj[i]) {
-            //     console.log('apiunit.docs: ', name, obj[i][name]);
+            //     console.log('jloads.docs: ', name, obj[i][name]);
             // }
         }
         return this;
@@ -77,7 +77,7 @@ var Router = function (target, error, success) {
             router.cfg.domain = domain;
             router.included.push(file);
         }{
-            console.error('apiunit.domain: is an object:', domain);
+            console.error('jloads.domain: is an object:', domain);
         }
 
         return this;
@@ -89,7 +89,7 @@ var Router = function (target, error, success) {
     //     console.log ("Bild geladen");
     //     elem.appendChild (img);
     // }
-    // img.src = "../img/apiunit.png";  // erst nach dem Event Listener!
+    // img.src = "../img/jloads.png";  // erst nach dem Event Listener!
     //
     // window.onunload = function() {
     //     alert('bye bye Honey')
