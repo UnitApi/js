@@ -4,7 +4,7 @@
 [![gitter](https://badges.gitter.im/Join%20Chat.svg)][gitter]
 
 # js
-https://unitapi.github.io/js/
+https://js.jloads.com
 
 Libraries for apiunit implementation, works on js.apiunit.com
 
