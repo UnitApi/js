@@ -1,8 +1,8 @@
 // Rest
 // formEvent
-function restUrl(url, classname, error, success) {
+function restUrl(url, classname, response, error, success) {
 
-    var rest_form = new Rest(url, '?', error, success);
+    var rest_form = new Rest(url, '?', response, error, success);
 
     var forms = document.getElementsByTagName('form');
 

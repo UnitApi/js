@@ -1,4 +1,4 @@
-function restSubmit(modulename, method, data, error, success) {
+function restSubmit(modulename, method, data, response, error, success) {
     var url = '/origini-app/visitor/' + modulename + '/php/index.php';
 
     console.log('restSubmit');
@@ -9,7 +9,7 @@ function restSubmit(modulename, method, data, error, success) {
     // }, function (data) {
     //     console.table(data);
     // });
-    var RestHandle = new Rest(url, '?', error, success);
+    var RestHandle = new Rest(url, '?', response, error, success);
 
     console.log(this);
 

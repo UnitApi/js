@@ -1,6 +1,6 @@
 // formToObject
 // Rest
-function restModule(modulename, classname_prefix, domain, restfile, error, success) {
+function restModule(modulename, classname_prefix, domain, restfile, response, error, success) {
 
     console.log('restModule');
     return;
@@ -19,7 +19,7 @@ function restModule(modulename, classname_prefix, domain, restfile, error, succe
 
     var url = domain + modulename + restfile;
 
-    var rest_form = new Rest(url, '?', error, success);
+    var rest_form = new Rest(url, '?', response, error, success);
 
 
     // var forms = document.getElementsByTagName('form');
