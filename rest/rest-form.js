@@ -40,7 +40,7 @@ var RestForm = function (separator, error, success) {
 
                 var form = forms[i];
                 //formEvent(forms[i], rest_form, error, success);
-                form.addEventListener(config.event, function (event) {
+                form.addEventListener(cfg.event, function (event) {
                     console.log(this);
 
                     var data = formToObject(this);
