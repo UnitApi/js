@@ -97,7 +97,7 @@ var Router = function (include, error, success) {
     //     console.log ("Bild geladen");
     //     elem.appendChild (img);
     // }
-    // img.src = "../img/apiunit.png";  // erst nach dem Event Listener!
+    // img.src = "../img/jloads.png";  // erst nach dem Event Listener!
     //
     // window.onunload = function() {
     //     alert('bye bye Honey')

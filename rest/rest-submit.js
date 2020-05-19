@@ -1,6 +1,9 @@
 function restSubmit(modulename, method, data, error, success) {
     var url = '/origini-app/visitor/' + modulename + '/php/index.php';
 
+    console.log('restSubmit');
+    return;
+
     // var Newsletter = new Rest(url, '?', function (data) {
     //     console.error(data);
     // }, function (data) {

@@ -2,6 +2,9 @@
 // Rest
 function restModule(modulename, classname_prefix, domain, restfile, error, success) {
 
+    console.log('restModule');
+    return;
+
     if (classname_prefix === undefined || classname_prefix.length < 1) {
         classname_prefix = 'module-';
     }

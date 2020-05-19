@@ -97,6 +97,11 @@ http://localhost/origini-app/visitor/home/page/index.html
 
     setTimeout(function () {
             var form = new RestForm('form', error, success);
+
+            console.log('RestForm');
+            return;
+
+
             form.submit({
                 "target": "form",
                 "url": "//app.jloads.com/visitor/newsletter/php/index.php",
