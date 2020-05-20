@@ -2,12 +2,11 @@
  * Rest
  * formToObject
  */
-var RestForm = function (separator, response, error, success) {
+var RestForm = function (target, response, error, success) {
 
     this.cfg = {};
-    this.cfg.separator = separator;
     this.cfg.target = "";
-    this.cfg.method = "get";
+    this.cfg.method = "GET";
     this.cfg.url = "";
 
     // this.cfg.event = "submit";
@@ -38,11 +37,11 @@ var RestForm = function (separator, response, error, success) {
         // cfg.target = "form";
 
 
-        if (typeof cfg.separator === 'undefined') {
-            cfg.separator = self.cfg.separator;
+        if (typeof cfg.target === 'undefined') {
+            cfg.target = self.cfg.target;
         }
 
-        cfg.element = new E(cfg.separator);
+        cfg.element = new E(cfg.target);
 
         // config.event = cfg.event;
         // config.target = cfg.event;
