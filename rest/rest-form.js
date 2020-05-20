@@ -47,6 +47,7 @@ var RestForm = function (target, response, error, success) {
         // config.target = cfg.event;
         cfg.element.all('', function (forms) {
 
+
             var rest_form = new Rest(cfg.url, '?', response, error, success);
 
             // var forms = element.getElementsByTagName('form');

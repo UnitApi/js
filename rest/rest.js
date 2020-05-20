@@ -9,6 +9,7 @@ var Rest = function (url, separator, response, error, success) {
     this.url = url;
     this.separator = '/';
     this.response = response;
+
     if (separator !== undefined) {
         // this.selector = selector + 'id=';
         this.separator = separator;
@@ -20,17 +21,21 @@ var Rest = function (url, separator, response, error, success) {
 
     var rest = this;
 
-    this.setUrl = function (url) {
-        rest.url = url;
+
+    rest.setUrl = function (url) {
+        response.url = url;
+        return rest;
     };
 
-    this.setSeparator = function (separator) {
+    rest.setSeparator = function (separator) {
         rest.separator = separator;
+        return rest;
     };
 
 
-    this.setResponse = function (response) {
+    rest.setResponse = function (response) {
         rest.response = response;
+        return rest;
     };
 
 
@@ -55,7 +60,7 @@ var Rest = function (url, separator, response, error, success) {
 
     }
 
-    this.all = function () {
+    rest.all = function () {
 
         var xhr = createCORSRequest('GET', rest.url);
         if (!xhr) {
@@ -65,10 +70,12 @@ var Rest = function (url, separator, response, error, success) {
             rest.response(xhr, error, success);
         }
         xhr.send(null);
+
+        return rest;
     }
 
 
-    this.get = function (id) {
+    rest.get = function (id) {
 
         var xhr = createCORSRequest('GET', rest.url + rest.separator + id);
         if (!xhr) {
@@ -83,10 +90,11 @@ var Rest = function (url, separator, response, error, success) {
         } catch (err) {
             error(err);
         }
+        return rest;
     }
 
     // create
-    this.post = function (data) {
+    rest.post = function (data) {
 
         var xhr = createCORSRequest("POST", rest.url);
         if (!xhr) {
@@ -94,17 +102,18 @@ var Rest = function (url, separator, response, error, success) {
         }
         xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');
         xhr.onload = function () {
-            rest.response(xhr, error, success);
+            rest.response(xhr);
         }
         try {
             xhr.send(rest.getJson(data));
         } catch (err) {
             error(err);
         }
+        return rest;
     }
 
     // update
-    this.put = function (id, data) {
+    rest.put = function (id, data) {
         var xhr = createCORSRequest("PUT", rest.url + rest.separator + id);
         if (!xhr) {
             throw new Error('CORS not supported');
@@ -118,9 +127,10 @@ var Rest = function (url, separator, response, error, success) {
         } catch (err) {
             error(err);
         }
+        return rest;
     }
 
-    this.delete = function (id) {
+    rest.delete = function (id) {
         var xhr = createCORSRequest("DELETE", rest.url + rest.separator + id);
         if (!xhr) {
             throw new Error('CORS not supported');
@@ -134,6 +144,7 @@ var Rest = function (url, separator, response, error, success) {
         } catch (err) {
             error(err);
         }
+        return rest;
     }
 
     this.getJson = function (data) {
