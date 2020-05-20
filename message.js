@@ -9,30 +9,59 @@
 //
 // };
 
+/**
+ *
+ * @param classname
+ * @constructor
+ */
+var Message = function (classname) {
+    // this.selector = selector;
+    // if (typeof this.selector !== 'string') {
+    //     console.error("is emptz selector for message");
+    // }
+    this.classname = classname;
+    this.element = {};
 
-var Message = function (selector) {
-    this.selector = selector;
+    var self = this;
+
+
+    this.getClassname = function () {
+        if (typeof self.classname !== 'string') {
+            self.classname = 'home-messages';
+        }
+        return self.classname;
+    }
+
+
+    this.getElement = function () {
+        self.element = document.getElementsByClassName(self.getClassname())
+        return self.element;
+    }
 
 
     this.add = function (message) {
         console.log(message);
-        var classname = null;
 
-        if (typeof classname !== 'string') {
-            classname = 'home-messages';
-        }
-        handle = document.getElementsByClassName(classname)
-        if (handle)
-
-            var node = document.createElement("LI");                 // Create a <li> node
+        var node = document.createElement("LI");                 // Create a <li> node
         var textnode = document.createTextNode(message);         // Create a text node
         node.appendChild(textnode);
-        document.getElementsByClassName(classname)[0].appendChild(node);
+
+        if (self.getElement()) {
+            self.getElement()[0].appendChild(node);
+        } else {
+            console.error('handle element not exist for message');
+        }
+
     }
 }
 
-
-function AddMessage(text, classname) {
+/**
+ *
+ * @param text
+ * @param classname
+ * @constructor
+ */
+function AddMessage(text, classname = 'home-messages') {
     var message = new Message(classname);
     message.add(text);
 }
