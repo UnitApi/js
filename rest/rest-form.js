@@ -6,13 +6,29 @@ var RestForm = function (separator, response, error, success) {
 
     this.cfg = {};
     this.cfg.separator = separator;
+    this.cfg.target = "";
+    this.cfg.method = "get";
+    this.cfg.url = "";
+
     // this.cfg.event = "submit";
 
     // var elmnt = el.first();
 
     var self = this;
 
-    this.submit = function (cfg) {
+    self.url = function (url) {
+        self.cfg.url = url;
+        return self;
+    }
+
+    self.cfg = function (cfg) {
+        self.cfg = cfg;
+        return self;
+    }
+
+    self.submit = function () {
+
+        var cfg = self.cfg;
 
         if (typeof cfg === 'undefined') {
             cfg = {};
@@ -63,4 +79,5 @@ var RestForm = function (separator, response, error, success) {
         // cfg.method;
     }
 
+    return self;
 }
