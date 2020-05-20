@@ -11,33 +11,49 @@
 
 /**
  *
- * @param classname
+ * @param class
  * @constructor
  */
-var Message = function (classname) {
+var Message = function (cfg) {
     // this.selector = selector;
     // if (typeof this.selector !== 'string') {
     //     console.error("is emptz selector for message");
     // }
-    this.classname = classname;
-    this.element = {};
 
-    var self = this;
+    // RESET if not exist
+    if (typeof cfg !== 'object') {
+        var cfg = {};
+        cfg.class = 'home-messages';
+        cfg.id = 'home-messages';
+        cfg.element = {};
+        cfg.message = '';
+    }
 
 
     this.getClassname = function () {
-        if (typeof self.classname !== 'string') {
-            self.classname = 'home-messages';
+        if (typeof cfg.class !== 'string') {
+            cfg.class = 'home-messages';
         }
-        return self.classname;
+        return cfg.class;
     }
 
 
     this.getElement = function () {
-        self.element = document.getElementsByClassName(self.getClassname())
-        return self.element;
+        if(self.getClassname()){
+            cfg.element = document.getElementsByClassName(self.getClassname())
+        }
+        return cfg.element;
     }
 
+    var self = this;
+
+
+    this.getMessage = function () {
+        if (typeof cfg.message !== 'string') {
+            cfg.message = 'Message is empty!';
+        }
+        return cfg.message;
+    }
 
     this.add = function (message) {
         console.log(message);
@@ -53,15 +69,19 @@ var Message = function (classname) {
         }
 
     }
+
+    return this;
 }
 
 /**
  *
  * @param text
- * @param classname
  * @constructor
  */
-function AddMessage(text, classname = 'home-messages') {
-    var message = new Message(classname);
+function AddMessage(text) {
+
+    var message = new Message({
+        'class': 'home-messages'
+    });
     message.add(text);
 }
