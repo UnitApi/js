@@ -1,16 +1,3 @@
-// var HomeMessage = function (name, success, error) {
-//     this.name = name;
-//     this.success = success;
-//     this.error = error;
-//
-//     this.create = function (data) {
-//         restSubmit(this.name, 'GET', data, this.success, this.error);
-//     }
-//
-// };
-
-// example: element('body').first().
-
 var E = function (selector, area, error, success) {
 
     if (typeof E_DEBUG === 'undefined') {
@@ -22,13 +9,18 @@ var E = function (selector, area, error, success) {
     this.cfg.selector = selector;
     this.cfg.exist = false;
 
+
     this.success = function (elem) {
-        E_DEBUG || console.log("Element elem: ", elem);
+        E_DEBUG || console.log("Element func success(): ", elem);
     };
 
     this.error = function (elem) {
-        console.error("! Element elem: ", elem);
+        console.error("! Element func error(): ", elem);
     };
+
+    if (typeof this.cfg.selector !== 'string') {
+        console.error("! Element selector: ", elem);
+    }
 
     if (typeof success === 'function') {
         this.success = success;
@@ -38,22 +30,25 @@ var E = function (selector, area, error, success) {
         this.error = error;
     }
 
-
     var self = this;
 
-    this.selector = function (selector) {
+
+    self.selector = function (selector) {
         self.cfg.selector = selector;
-        return this;
+        return self;
     }
 
-    this.first = function (error, success) {
+    self.first = function (error, success) {
         if (typeof success !== 'function') {
             success = self.success;
         }
         if (typeof error !== 'function') {
             error = self.error;
         }
-
+        if (typeof self.cfg.selector !== 'string') {
+            self.cfg.exist = false;
+            error();
+        }
         const elem = document.querySelector(self.cfg.selector);
 
         E_DEBUG || console.log('E first self.cfg.selector', self.cfg.selector);
@@ -71,7 +66,7 @@ var E = function (selector, area, error, success) {
         return elem;
     }
 
-    this.all = function (error, success) {
+    self.all = function (error, success) {
         if (typeof success !== 'function') {
             success = self.success;
         }
@@ -94,32 +89,6 @@ var E = function (selector, area, error, success) {
 
         return elem;
     }
-};
 
-//
-// function getElement(id) {
-//     if (document.getElementById) {
-//         return document.getElementById(id);
-//     } else if (document.all) {
-//         return window.document.all[id];
-//     } else if (document.layers) {
-//         return window.document.layers[id];
-//     }
-// }
-//
-// function getElement() {
-//     const element = document.querySelector("#box");
-//
-//     element.classList.contains("highlighted");
-//
-//     return element;
-// }
-//
-//
-// function getElement() {
-//     const element = document.querySelector("#box");
-//
-//     element.classList.contains("highlighted");
-//
-//     return element;
-// }
+    return self;
+};
