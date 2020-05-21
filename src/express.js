@@ -1,4 +1,4 @@
-module.exports = function (domain = 'localhost', port = 3000, public_src = "./" ) {
+module.exports = function (application, domain = 'localhost', port = 3000, public_src = "./" ) {
 
     const express = require('express');
 
@@ -32,7 +32,7 @@ module.exports = function (domain = 'localhost', port = 3000, public_src = "./" 
     // app.listen(PORT, () => console.log(`listening on ${PORT}`));
     var url = 'http://'+domain + ':'+ port;
 
-    app.listen(port, () => console.log('jLoads.js is listening on: ' + url ));
+    app.listen(port, () => console.log(application + ' is listening on: ' + url ));
 
     return app;
 };
