@@ -18,9 +18,10 @@ var RestForm = function (target, response, error, success) {
     }
 
     this.cfg = {};
-    this.cfg.target = "";
+    this.cfg.target = target;
     this.cfg.method = "GET";
     this.cfg.url = "";
+    this.cfg.event = "submit";
 
     // this.cfg.event = "submit";
 
@@ -34,34 +35,33 @@ var RestForm = function (target, response, error, success) {
     }
 
     self.cfg = function (cfg) {
-        self.cfg = cfg;
+        if (typeof cfg === 'undefined') {
+            return self;
+        }
+        if (typeof cfg.target === 'string') {
+            self.cfg.target = cfg.target;
+        }
+        if (typeof cfg.method === 'string') {
+            self.cfg.method = cfg.method;
+        }
+        if (typeof cfg.url === 'string') {
+            self.cfg.url = cfg.url;
+        }
+        return self;
+    }
+
+    self.target = function (target) {
+        self.cfg.target = target;
         return self;
     }
 
     self.submit = function () {
 
-        var cfg = self.cfg;
+        self.cfg.element = new E(self.cfg.target);
 
-        if (typeof cfg === 'undefined') {
-            cfg = {};
-        }
+        self.cfg.element.all('', function (forms) {
 
-        cfg.event = "submit";
-        // cfg.target = "form";
-
-
-        if (typeof cfg.target === 'undefined') {
-            cfg.target = self.cfg.target;
-        }
-
-        cfg.element = new E(cfg.target);
-
-        // config.event = cfg.event;
-        // config.target = cfg.event;
-        cfg.element.all('', function (forms) {
-
-
-            var rest_form = new Rest(cfg.url, '?', response, error, success);
+            var rest_form = new Rest(self.cfg.url, '?', response, error, success);
 
             // var forms = element.getElementsByTagName('form');
             // var forms = element.getElementsByTagName('form');
@@ -70,7 +70,9 @@ var RestForm = function (target, response, error, success) {
 
                 var form = forms[i];
                 //formEvent(forms[i], rest_form, error, success);
-                form.addEventListener(cfg.event, function (event) {
+                form.addEventListener(self.cfg.event, function (event) {
+                    event.preventDefault();
+
                     RESTFORM_DEBUG && console.log(this);
 
                     var data = formToObject(this);
@@ -84,7 +86,7 @@ var RestForm = function (target, response, error, success) {
                     rest_form.byMethod(method, data);
                     RESTFORM_DEBUG && console.log(data);
 
-                    event.preventDefault();
+                    success(event);
                 });
             }
         });
