@@ -12,13 +12,18 @@
 // example: element('body').first().
 
 var E = function (selector, area, error, success) {
+
+    if (typeof E_DEBUG === 'undefined') {
+        var E_DEBUG = true;
+    }
+
     this.cfg = {};
     this.cfg.area = document;
     this.cfg.selector = selector;
     this.cfg.exist = false;
 
     this.success = function (elem) {
-        console.log("Element elem: ", elem);
+        E_DEBUG && console.log("Element elem: ", elem);
     };
 
     this.error = function (elem) {
@@ -51,8 +56,8 @@ var E = function (selector, area, error, success) {
 
         const elem = document.querySelector(self.cfg.selector);
 
-        console.log('E first self.cfg.selector', self.cfg.selector);
-        console.log('E first elem', elem);
+        E_DEBUG && console.log('E first self.cfg.selector', self.cfg.selector);
+        E_DEBUG && console.log('E first elem', elem);
 
         if (elem !== null) {
             self.cfg.exist = true;
@@ -76,8 +81,8 @@ var E = function (selector, area, error, success) {
 
         const elem = document.querySelectorAll(self.cfg.selector);
 
-        console.log('E all self.cfg.selector', self.cfg.selector);
-        console.log('E all elem', elem);
+        E_DEBUG && console.log('E all self.cfg.selector', self.cfg.selector);
+        E_DEBUG && console.log('E all elem', elem);
 
         if (elem !== null) {
             self.cfg.exist = true;

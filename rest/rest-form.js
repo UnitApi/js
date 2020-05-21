@@ -2,7 +2,20 @@
  * Rest
  * formToObject
  */
+/**
+ *
+ * @param target
+ * @param response
+ * @param error
+ * @param success
+ * @returns {RestForm}
+ * @constructor
+ */
 var RestForm = function (target, response, error, success) {
+
+    if(typeof RESTFORM_DEBUG === 'undefined'){
+        var RESTFORM_DEBUG = true;
+    }
 
     this.cfg = {};
     this.cfg.target = "";
@@ -58,7 +71,7 @@ var RestForm = function (target, response, error, success) {
                 var form = forms[i];
                 //formEvent(forms[i], rest_form, error, success);
                 form.addEventListener(cfg.event, function (event) {
-                    console.log(this);
+                    RESTFORM_DEBUG && console.log(this);
 
                     var data = formToObject(this);
                     var method = data.method;
@@ -66,10 +79,10 @@ var RestForm = function (target, response, error, success) {
                     delete data.method;
                     delete data.submit;
 
-                    console.log(method);
+                    RESTFORM_DEBUG && console.log(method);
 
                     rest_form.byMethod(method, data);
-                    console.log(data);
+                    RESTFORM_DEBUG && console.log(data);
 
                     event.preventDefault();
                 });
