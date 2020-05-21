@@ -73,7 +73,7 @@ var RestForm = function (target, response, error, success) {
                 form.addEventListener(self.cfg.event, function (event) {
                     event.preventDefault();
 
-                    RESTFORM_DEBUG && console.log(this);
+                    RESTFORM_DEBUG || console.log(this);
 
                     var data = formToObject(this);
                     var method = data.method;
@@ -81,10 +81,10 @@ var RestForm = function (target, response, error, success) {
                     delete data.method;
                     delete data.submit;
 
-                    RESTFORM_DEBUG && console.log(method);
+                    RESTFORM_DEBUG || console.log(method);
 
                     rest_form.byMethod(method, data);
-                    RESTFORM_DEBUG && console.log(data);
+                    RESTFORM_DEBUG || console.log(data);
 
                     success(event);
                 });
