@@ -1,7 +1,7 @@
-/**
- * Rest
- * formToObject
- */
+// rest-form.js
+if (typeof RESTFORM_DEBUG === 'undefined') {
+    var RESTFORM_DEBUG = true;
+}
 /**
  *
  * @param target
@@ -12,10 +12,6 @@
  * @constructor
  */
 var RestForm = function (target, response, error, success) {
-
-    if(typeof RESTFORM_DEBUG === 'undefined'){
-        var RESTFORM_DEBUG = true;
-    }
 
     this.cfg = {};
     this.cfg.target = target;
@@ -47,6 +43,9 @@ var RestForm = function (target, response, error, success) {
         if (typeof cfg.url === 'string') {
             self.cfg.url = cfg.url;
         }
+        if (typeof cfg.event === 'string') {
+            self.cfg.event = cfg.event;
+        }
         return self;
     }
 
@@ -58,6 +57,8 @@ var RestForm = function (target, response, error, success) {
     self.submit = function () {
 
         self.cfg.element = new E(self.cfg.target);
+        !RESTFORM_DEBUG || console.log('.submit() self.cfg.target', self.cfg.target);
+        !RESTFORM_DEBUG || console.log('.submit() self.cfg.event', self.cfg.event);
 
         self.cfg.element.all('', function (forms) {
 
@@ -71,9 +72,8 @@ var RestForm = function (target, response, error, success) {
                 var form = forms[i];
                 //formEvent(forms[i], rest_form, error, success);
                 form.addEventListener(self.cfg.event, function (event) {
-                    event.preventDefault();
 
-                    RESTFORM_DEBUG || console.log(this);
+                    !RESTFORM_DEBUG || console.log(this);
 
                     var data = formToObject(this);
                     var method = data.method;
@@ -81,12 +81,14 @@ var RestForm = function (target, response, error, success) {
                     delete data.method;
                     delete data.submit;
 
-                    RESTFORM_DEBUG || console.log(method);
+                    !RESTFORM_DEBUG || console.log(method);
 
                     rest_form.byMethod(method, data);
-                    RESTFORM_DEBUG || console.log(data);
+                    !RESTFORM_DEBUG || console.log(data);
 
                     success(event);
+                    event.preventDefault();
+
                 });
             }
         });
