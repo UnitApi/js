@@ -109,7 +109,9 @@ zwraca obiekt
 ....
 
 
+## Serwer
 
+[forever - npm](https://www.npmjs.com/package/forever)
 
 ## PANEL PLESK
 
