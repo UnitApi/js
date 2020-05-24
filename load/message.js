@@ -78,7 +78,7 @@ var Message = function (cfg) {
  * @param text
  * @constructor
  */
-function AddMessage(text) {
+function AddMessage(text, cfg) {
 
     var message = new Message({
         'class': 'home-messages'
