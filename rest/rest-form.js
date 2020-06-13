@@ -72,6 +72,7 @@ var RestForm = function (target, response, error, success) {
                 var form = forms[i];
                 //formEvent(forms[i], rest_form, error, success);
                 form.addEventListener(self.cfg.event, function (event) {
+                    event.preventDefault();
 
                     !RESTFORM_DEBUG || console.log(this);
 
@@ -87,7 +88,7 @@ var RestForm = function (target, response, error, success) {
                     !RESTFORM_DEBUG || console.log(data);
 
                     success(event);
-                    event.preventDefault();
+
 
                 });
             }
